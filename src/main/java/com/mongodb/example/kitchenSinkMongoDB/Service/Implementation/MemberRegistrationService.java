@@ -68,9 +68,8 @@ public class MemberRegistrationService implements IMemberRegistrationService {
         if (!CollectionUtils.isEmpty(request.getFields())) {
             request.getFields().forEach(specificationFactory::include);
         }
-//        specificationFactory.include("message", "priority", "timestamp", "subtype", "type");
         Page<Member> members = queryExecutor.execute(specificationFactory.build(), Member.class, pageable);
-        return null;//members.map(genericMapper::toMemberDTO);
+        return members.map(genericMapper::toMemberDTO);
 
     }
 }
